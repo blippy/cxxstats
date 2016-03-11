@@ -1,3 +1,4 @@
 cxxstats
+test_cxxstats
 *.o
 
