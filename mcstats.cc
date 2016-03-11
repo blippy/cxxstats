@@ -1,3 +1,4 @@
+#include <math.h>
 #include "mcstats.h"
 
 
@@ -28,4 +29,20 @@ void sortd (std::vector<double> &xs)
 
 	//return res;
 }
-					
+
+/** 
+ calculates quantiles according to Excel interpolation formula
+ https://en.wikipedia.org/wiki/Quantile
+ assumes array is sorted
+*/
+double quantile(std::vector<double> arr, double q)
+{
+	double res;
+	int len = arr.size();
+	double hd = (len-1) * q ; //+ 1;
+	int hi = floor(hd);	
+	if(q == 1) res = arr[len-1];
+	else res = arr[hi] + (hd - hi) * (arr[hi+1] - arr[hi]);
+	return res;
+
+}				

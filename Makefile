@@ -12,4 +12,4 @@ cxxstats : cxxstats.cc parse.o
 	g++ -std=gnu++11 -ggdb $^ -o $@ -lreadline
 
 test_cxxstats : test_cxxstats.cc mcstats.o
-	g++ -std=gnu++11 -ggdb $^ -o $@
+	g++ -std=gnu++11 -ggdb $^ -o $@ -lm
