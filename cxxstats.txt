@@ -1,0 +1,6 @@
+COMMANDS
+
+.s print stack
+g go (do calcs)
+q quit
+

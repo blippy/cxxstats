@@ -1,4 +1,5 @@
 cxxstats
 test_cxxstats
 *.o
-
+*.swp
+*.a
