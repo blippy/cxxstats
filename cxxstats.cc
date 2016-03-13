@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <stdexcept> // std::invalid_argument for g++ 4.8.2
 
 #include "mcstats.h"
 #include "parse.h"
