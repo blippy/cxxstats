@@ -3,7 +3,7 @@
 
 
 /** sort doubles in place */
-void sortd (std::vector<double> &xs)
+void sortd (doubles &xs)
 {
 	//vecvec_t rows = read_registered_dsv(etransa);
 	//vector<double> res;
@@ -35,7 +35,7 @@ void sortd (std::vector<double> &xs)
  https://en.wikipedia.org/wiki/Quantile
  assumes array is sorted
 */
-double quantile(std::vector<double> arr, double q)
+double quantile(const doubles &arr, double q)
 {
 	double res;
 	int len = arr.size();
@@ -46,3 +46,13 @@ double quantile(std::vector<double> arr, double q)
 	return res;
 
 }				
+
+void basic_stats(const doubles &ds, stats &s)
+{
+	double sxx =0, sx = 0;
+	for(double d: ds) { sx += d; sxx += d*d; };
+	int n = ds.size();
+	s.n = n;
+	s.mean = sx / n;
+	s.stdev = sqrt( (n*sxx - sx*sx)/n/(n-1));
+}

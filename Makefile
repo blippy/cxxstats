@@ -16,6 +16,9 @@ $(LIB): parse.o mcstats.o
 parse.o : parse.cc parse.h
 	$(CXX) $(AMFLAGS) -c $< -o $@
 
+mcstats.o : mcstats.cc mcstats.h
+	$(CXX) $(AMFLAGS) -c $< -o $@
+
 cxxstats : cxxstats.cc $(LIB)
 	$(CXX) $(AMFLAGS)  $^ -o $@ -lreadline
 

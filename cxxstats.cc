@@ -13,7 +13,7 @@ using std::cout;
 using std::endl;
 //using namespace std;
 
-std::vector<double> g_stack;
+doubles g_stack;
 
 void print_stack()
 {
@@ -21,11 +21,20 @@ void print_stack()
 	//cout << endl;
 }
 
+void prstat(const char *name, double value) { cout << name << ": " << value << endl; }
+
 void do_calcs()
 {
 	if(g_stack.size() == 0) { /* cout << "Stack empty" << endl; */ return; }
+	
+	stats s;
+	basic_stats(g_stack, s);
+	prstat("Size", s.n);
+	prstat("Mean", s.mean);
+	prstat("Stdev", s.stdev);
+
 	sortd(g_stack);
-	cout << "TODO do calcs. Stack size: " << g_stack.size() << endl;
+	prstat("Median", quantile(g_stack, 0.5));
 	g_stack.clear();
 }
 

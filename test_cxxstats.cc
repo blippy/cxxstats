@@ -12,7 +12,15 @@
 using std::cout;
 using std::endl;
 
+doubles rs1, rs2 ; // random numbers
+
 bool near4(double a, double b) { return abs(a-b) < pow(10, -4) ;}
+
+
+void report(bool ok, const char *s)
+{
+	cout << (ok ? "PASS" : "FAIL") << ": " << s << endl;
+}
 
 /** read n doubles */
 void readnd(std::ifstream &ifs, int n, std::vector<double> &ds){
@@ -26,7 +34,6 @@ void readnd(std::ifstream &ifs, int n, std::vector<double> &ds){
 
 void test_sort()
 {
-	// test sorting
 	std::ifstream ifs;
 	ifs.open("../maff/xlsm/sort.txt");
 	std::string str;
@@ -42,9 +49,9 @@ void test_sort()
 	sortd(ds);
 	bool ok = true;
 	for(int i=0; i<n; i++){ if(ds[i] != ress[i]) ok = false; }
-	if(ok) cout << "PASS: "; else cout << "FAIL: ";
-	cout << "sort" << endl;
-		// cout << ds[i] << endl;
+	//if(ok) cout << "PASS: "; else cout << "FAIL: ";
+	//cout << "sort" << endl;
+	report(ok, "sortd");
 }
 
 void read_pairs(char *filename, std::vector<double> &vs1, std::vector<double> &vs2)
@@ -75,12 +82,11 @@ void read_pairs(char *filename, std::vector<double> &vs1, std::vector<double> &v
 }
 void test_quantile1()
 {
-	std::vector<double> xs, ys;
-	read_pairs((char *)"../maff/xlsm/random1.txt", xs, ys);
 
+	doubles xs = rs1;
 	sortd(xs);
 
-	std::vector<double> qs1, qs2;
+	doubles qs1, qs2;
 	read_pairs((char *)"../maff/xlsm/quantile1.txt", qs1, qs2);
 	bool ok = true;
 	for(int i=0; i< qs1.size(); i++) {
@@ -89,12 +95,34 @@ void test_quantile1()
 		//cout << qs1[i] << "\t" << qs2[i] << "\t" <<  qt - qs2[i] << endl;
 	}
 
-	if(ok) cout << "PASS: "; else cout << "FAIL: " ;
-	cout << "quantile" << endl;
+	report(ok, "quantile");
+	//if(ok) cout << "PASS: "; else cout << "FAIL: " ;
+	//cout << "quantile" << endl;
 }
+
+void test_basic_stats()
+{
+	std::ifstream ifs;
+	ifs.open("../maff/xlsm/stats.txt");
+	double dummy, mean, stdev;
+	ifs >> dummy >> mean >> stdev ;
+	ifs.close();
+
+	stats s;
+	basic_stats(rs1, s);
+	bool ok = near4(s.mean, mean ) && near4(s.stdev , stdev);
+	//cout << s.n << " " << s.mean << " " << s.stdev;
+	report(ok, "basic stats");
+}
+
 int main()
 {
 	test_sort();
+
+	read_pairs((char *)"../maff/xlsm/random1.txt", rs1, rs2);
+	
 	test_quantile1();
+	test_basic_stats();
+
 	return EXIT_SUCCESS;
 }

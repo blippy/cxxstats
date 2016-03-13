@@ -3,7 +3,14 @@
 
 #include <vector>
 
-void sortd (std::vector<double> &xs);
-double quantile(std::vector<double> arr, double q);
+typedef std::vector<double> doubles;
+
+
+struct stats_s { double n, sxx, mean, stdev /* sample */ /* sample */ /* sample */ /* sample */ /* sample */ /* sample */ /* sample */ /* sample */ ; }; 
+typedef struct stats_s stats;
+
+void sortd (doubles &xs);
+double quantile(const doubles &arr, double q);
+void basic_stats(const doubles &ds, stats &s);
 
 #endif
