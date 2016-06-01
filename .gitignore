@@ -17,4 +17,9 @@ config.log
 config.status
 src/.deps/
 src/Makefile
+test-driver
+src/test-suite.log
+src/testcxxstats
+src/tests-env.sh.log
+src/tests-env.sh.trs
 

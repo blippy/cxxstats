@@ -11,3 +11,5 @@ rm -f   Makefile config.log config.status
 rm -rf  src/.deps/ src/Makefile
 rm -f   src/test-suite.log src/test_cxxstats.log src/test_cxxstats.trs
 
+# generated during make process
+rm -f src/testcxxstats

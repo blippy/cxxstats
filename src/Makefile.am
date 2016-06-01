@@ -1,16 +1,14 @@
-bin_PROGRAMS = cxxstats 
-#bin_SOURCES = cxxstats.cc  mcstats.cc  parse.cc  test_cxxstats.cc
-check_PROGRAMS = text_cxxstats
+bin_PROGRAMS = cxxstats testcxxstats
+EXTRA_DIST = tests-env.sh
 
 cxxstats_LDADD = -lreadline
 cxxstats_SOURCES = cxxstats.cc mcstats.cc parse.cc
 
 
-# mcstats_SOURCES = mcstats.cc
 
-test_cxxstats_SOURCES = test_cxxstats.cc mcstats.cc
+testcxxstats_SOURCES = testcxxstats.cc mcstats.cc
 
-#AM_TESTS_ENVIRONMENT = test_cxxstats
-#AM_TESTS_FD_REDIRECT = 9>&2
-#TESTS = test_cxxstats
-
+AM_TESTS_ENVIRONMENT = . ./tests-env.sh
+AM_TESTS_FD_REDIRECT = 9>&2
+TESTS = tests-env.sh
+#TESTS = testcxxstats

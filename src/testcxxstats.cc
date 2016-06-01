@@ -12,7 +12,11 @@
 using std::cout;
 using std::endl;
 
+int exit_result = EXIT_SUCCESS; // assume ab initio
+
 doubles rs1, rs2 ; // random numbers
+
+
 
 bool near4(double a, double b) { return abs(a-b) < pow(10, -4) ;}
 
@@ -25,7 +29,17 @@ std::string maff_inp(const std::string filename)
 
 void report(bool ok, const char *s)
 {
-	cout << (ok ? "PASS" : "FAIL") << ": " << s << endl;
+
+	cout << ":test-result: " ;
+
+	if(ok) {
+		cout << "PASS";
+	} else {
+		cout << "FAIL";
+		exit_result = EXIT_FAILURE;
+	}
+
+	cout << ": " << s << endl;
 }
 
 /** read n doubles */
@@ -147,5 +161,5 @@ int main()
 	test_basic_stats();
 	test_frank();
 
-	return EXIT_SUCCESS;
+	return exit_result;
 }
