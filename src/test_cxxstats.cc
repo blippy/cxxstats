@@ -16,6 +16,12 @@ doubles rs1, rs2 ; // random numbers
 
 bool near4(double a, double b) { return abs(a-b) < pow(10, -4) ;}
 
+std::string maff_inp(const std::string filename)
+{
+	std::string res("../../maff/xlsm/");
+	res += filename;
+	return res;
+}
 
 void report(bool ok, const char *s)
 {
@@ -35,7 +41,8 @@ void readnd(std::ifstream &ifs, int n, std::vector<double> &ds){
 void test_sort()
 {
 	std::ifstream ifs;
-	ifs.open("../maff/xlsm/sort.txt");
+	std::string fname = maff_inp("sort.txt");
+	ifs.open(fname);
 	std::string str;
 	std::getline(ifs, str);
 	//cout << str << endl;
@@ -54,7 +61,7 @@ void test_sort()
 	report(ok, "sortd");
 }
 
-void read_pairs(char *filename, std::vector<double> &vs1, std::vector<double> &vs2)
+void read_pairs(const std::string& filename, std::vector<double> &vs1, std::vector<double> &vs2)
 {
 	std::ifstream ifs;
 	ifs.open(filename);
@@ -87,7 +94,8 @@ void test_quantile1()
 	sortd(xs);
 
 	doubles qs1, qs2;
-	read_pairs((char *)"../maff/xlsm/quantile1.txt", qs1, qs2);
+	std::string  fname =  maff_inp("quantile1.txt");
+	read_pairs(fname, qs1, qs2);
 	bool ok = true;
 	for(int i=0; i< qs1.size(); i++) {
 		double qt = quantile(xs, qs1[i]);
@@ -103,7 +111,8 @@ void test_quantile1()
 void test_basic_stats()
 {
 	std::ifstream ifs;
-	ifs.open("../maff/xlsm/stats.txt");
+	std::string fname = maff_inp("stats.txt");
+	ifs.open(fname);
 	double dummy, mean, stdev;
 	ifs >> dummy >> mean >> stdev ;
 	ifs.close();
@@ -131,7 +140,8 @@ int main()
 {
 	test_sort();
 
-	read_pairs((char *)"../maff/xlsm/random1.txt", rs1, rs2);
+	std::string fname = maff_inp("random1.txt");
+	read_pairs(fname, rs1, rs2);
 	
 	test_quantile1();
 	test_basic_stats();
