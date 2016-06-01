@@ -1,5 +1,6 @@
 bin_PROGRAMS = cxxstats testcxxstats
 EXTRA_DIST = tests-env.sh
+include_HEADERS = mcstats.h
 
 cxxstats_LDADD = -lreadline -lcxxstats
 cxxstats_SOURCES = cxxstats.cc parse.cc
