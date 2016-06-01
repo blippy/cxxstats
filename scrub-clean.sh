@@ -13,3 +13,9 @@ rm -f   src/test-suite.log src/test_cxxstats.log src/test_cxxstats.trs
 
 # generated during make process
 rm -f src/testcxxstats
+
+# other stuff that seems part of creating a library
+rm -f config.guess config.sub libtool ltmain.sh 
+rm -rf src/.libs/ 
+rm -f src/libcxxstats.la src/mcstats.lo
+

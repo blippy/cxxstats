@@ -4,6 +4,8 @@ AC_CONFIG_SRCDIR([src/cxxstats.cc])
 AM_INIT_AUTOMAKE([foreign])
 PKG_PROG_PKG_CONFIG
 
+LT_INIT
+
 #AC_LANG([C++])
 AC_PROG_CXX
 AC_PROG_CC
