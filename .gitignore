@@ -22,4 +22,11 @@ src/test-suite.log
 src/testcxxstats
 src/tests-env.sh.log
 src/tests-env.sh.trs
+config.guess
+config.sub
+libtool
+ltmain.sh
+src/.libs/
+src/libcxxstats.la
+src/mcstats.lo
 
