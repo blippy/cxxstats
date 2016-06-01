@@ -10,9 +10,12 @@ AMFLAGS = -std=gnu++11 -ggdb
 BINS = cxxstats test_cxxstats
 LIB = libcxxstats.a
 
-.PHONY : all clean
+.PHONY : all check clean
 
 all : $(BINS)
+
+check : test_cxxstats
+	test_cxxstats
 
 clean : 
 	rm -f *.o $(BINS) $(LIB)

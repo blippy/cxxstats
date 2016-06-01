@@ -115,6 +115,18 @@ void test_basic_stats()
 	report(ok, "basic stats");
 }
 
+
+void test_frank()
+{
+	//auto arr = std::vector<double> { 1.0, 1.0, 2.0, 3.0, 3.0, 4.0, 5.0, 5.0, 5.0 };
+	auto arr = std::vector<double> { 2.0, 5.0, 1.0, 3.0, 4.0, 5.0, 5.0, 1.0, 3.0 };
+	auto res = frank(arr);
+	auto expected = std::vector<double> { 3.0, 8.0, 1.5, 4.5, 6.0, 8.0, 8.0, 1.5, 4.5 };
+	report(res == expected, "fractional rank");
+	//for(auto r:res) { cout << r << "\n" ; }
+}
+
+
 int main()
 {
 	test_sort();
@@ -123,6 +135,7 @@ int main()
 	
 	test_quantile1();
 	test_basic_stats();
+	test_frank();
 
 	return EXIT_SUCCESS;
 }

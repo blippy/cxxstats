@@ -12,5 +12,6 @@ typedef struct stats_s stats;
 void sortd (doubles &xs);
 double quantile(const doubles &arr, double q);
 void basic_stats(const doubles &ds, stats &s);
+std::vector<double> frank(const std::vector<double>& arr);
 
 #endif

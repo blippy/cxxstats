@@ -1,4 +1,6 @@
 #include <math.h>
+#include <map>
+#include <vector>
 #include "mcstats.h"
 
 
@@ -56,3 +58,31 @@ void basic_stats(const doubles &ds, stats &s)
 	s.mean = sx / n;
 	s.stdev = sqrt( (n*sxx - sx*sx)/n/(n-1));
 }
+
+
+/**
+ * calculate the fractional rank of a vector of doubles
+ * https://en.wikipedia.org/wiki/Ranking#Ranking_in_statistics
+ */
+std::vector<double> frank(const std::vector<double>& arr)
+{
+	// count the occurances
+	std::map<double, double> m;
+	for(auto x: arr) {
+		auto it = m.find(x);
+		if(it == m.end()) {m[x] = 1; } else { m[x] += 1;}
+	}
+
+	//attach fractional ranks to occurances	
+	double rank = 0;
+	for(auto it = m.begin(); it != m.end(); ++it) {
+		// derived from https://www.mathsisfun.com/algebra/sequences-sums-arithmetic.html :
+		double rnk = rank + 0.5 + it->second / 2.0 ;
+		rank += it->second ;
+		it->second = rnk;
+	}
+
+	std::vector<double> res;
+	for(auto x: arr)  res.push_back(m[x]);
+	return res;
+}	
